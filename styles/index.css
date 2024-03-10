@@ -1,13 +1,11 @@
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
     justify-content: center;
     color: #242635;
     font-style: normal;
     width: 100%;
-
-    
+    max-height: 810px;
 }
 
 /*Text*/
@@ -31,30 +29,29 @@ h2, .txt__logo, .btn__navigation {
     font-weight: 400;
 }
 
+/*Images*/
 img {
     width: 100%;
-    height: 100%;
+    min-height: 284px;
     object-fit: cover;
 }
 
 /*Header*/
 .header {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-row: 3 / 4;
     width: 100%;
-    max-height: 62px;
     
 }
 .container.header {
     display: grid;
     justify-content: space-between;
     max-width: 870px;
-    width: 100%;
-    padding-top: 68px;
 }
 .logo {
     width: 90px;
     grid-column: 1 / 2;
+    line-height: 36px;
 }
 .navigation {
     display: grid;
@@ -79,101 +76,105 @@ img {
 
     &.works {
         grid-column: 1 / 2;
-        width: 42px;
+        min-width: 42px;
     }
     &.services {
         grid-column: 2 / 3;
-        width: 56px;
+        min-width: 56px;
     }
     &.contacts {
         grid-column: 3 / 4;
-        width: 59px;
+        min-width: 59px;
     }
+    &.ellipsis {
+        display: none;
+    }
+}
+.svg.ellipsis {
+    width: 24px;
+    height: 24px;
+    color: #242635;
 }
 .btn__navigation:hover {
     color: #d3611a;
     font-weight: 500;
     transition: 0.5s;
+    
+    .svg:hover {
+    fill: #d3611a;
+    transition: 0.5s;
+    }
 }
+ 
 
 /*Main*/
 .main {
     display: grid;
     justify-items: center;
     align-items: center;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    grid-row: 4 / 5;
     max-width: 864px;
-    min-height: 716px;
+    max-height: 716px;
 }
 .container {
 
     &.one {
-        grid-column: 2 / 3;
-        grid-row: 2 / 3;
+        display: grid;
+        justify-items: center;
+        grid-template-rows: repeat(4, 1fr);
+        grid-column: 1 / 4;
+        grid-row: 6 / 7;
         min-width: 217px;
         max-width: 573.5px;
-
+        max-height: 198px;
     }
 
     &.two {
-        grid-column: 2 / 3;
-        grid-row: 3 / 4;
-        min-width: 217px;
-        max-width: 573.5px;
-        min-height: 49px;
-        max-height: 66px;
-        margin: 30px;
-    }
-
-    &.three {
+        display: grid;
+        align-items: end;
+        overflow: hidden;
         grid-column: 1 / 4;
-        grid-row: 4 / 5;
+        grid-row: 7 / 8;
         min-width: 256px;
         max-width: 864px;
-        
-        overflow: hidden;
+        height: 377px;
     }
 }
 .card {
 
     &.title {
-        grid-row: 1 / 2;
+        grid-row: 1 / 4;
         min-width: 182px;
         max-width: 455px;
-        min-height: 40px;
-        max-height: 102px;
         font-size: 90px;
         line-height: 102px;
         letter-spacing: -2px;
     }
     &.heading {
-        grid-row: 3 / 4;
-        min-width: 217px;
+        grid-row: 5 / 6;
         max-width: 573.5px;
-        max-height: 96px;
+        line-height: 33px;
     }
     &.img {
-        margin-top: 17px;
+        display: grid;
+        align-content: space-between;
+        max-height: 328px;
     }
 }
 
 
 /*Media*/
-@media screen and (min-width: 770px) {
-    .container.two {
-        margin: 30px;
-    }
-}
-
 @media screen and (max-width: 769px){
     
-    .card.img {
-        background-image: url(../images/horses_medium.png);
-        margin-top: 3px;
+    body {
+        max-height: 1024px;
+    }
+    .main {
+        max-height: 954px;
     }
     .container.header {
         max-width: 617px;
-        padding-top: 40px;
     }
     .txt__logo {
         font-family: "Baloo 2", sans-serif;
@@ -184,24 +185,77 @@ img {
         grid-gap: 30px;
         max-width: 303px;
     }
+    .btn__navigation {
+        &.works, &.services, &.contacts {
+        min-width: 63px;
+        }
+    }
+    .container.one {
+        max-height: 171px;
+    }
     .card.title {
         font-size: 72px;
         line-height: 82.8px;    
         letter-spacing: -1.6px;
     }
-    .main {
-        min-height: 960px;
+    .card.img {
+        background-image: url(../images/horses_medium.png);
+        max-height: 512px;
     }
     .container.two {
-        margin: 22px;
+        height: 557px;
     }
 
 }
 @media screen and (max-width: 321px){
+
+    body {
+        width: 320px;
+        max-height: 568px;
+    }
+    .main {
+        max-height: 521px;
+    }
+    .container.header {
+        max-width: 258px;
+    }
+    .navigation {
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 0px;
+        max-width: 24px;
+    }
+    .btn__navigation{
+        min-width: 24px;
+        line-height: 24px;
+
+        &.works, &.services, &.contacts {
+            display: none;
+            }
+        &.ellipsis{
+            display: grid;
+            grid-column: 3 / 4;
+            }
+    }
+    .card.title {
+        font-size: 36px;
+        line-height: 39.6px;
+        letter-spacing: -0.8px;
+    }
+    .card.heading {
+        max-height: 49px;
+        max-width: 217px;
+        font-size: 12px;
+        line-height: 18px;
+    }
     .card.img {
         background-image: url(../images/horses_small.png);
+        max-height: 284px;
+        max-width: 256px;
     }
-    .header {
-        padding-top: 11px;
+    .container.one {
+        height: 116px;
+    }
+    .container.two {
+        height: 341px;
     }
 }
